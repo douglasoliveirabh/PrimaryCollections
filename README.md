@@ -1,2 +1,2 @@
-# PrimaryCollections
-A simple repository to implement collections (Stack, Queue, etc ) without language facilities
+# Primary Collections
+A simple repository to implement collections (Stack, Queue.... ) without language facilities
