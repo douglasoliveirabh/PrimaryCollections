@@ -2,10 +2,16 @@ using System;
 
 namespace PrimaryCollections
 {
-    public class MyQueue
+    public class Queue
     {        
         private Node First;
         private Node Last;
+
+        public Queue()
+        {
+            this.First = null;
+            this.Last = null;
+        }
 
         public int Lenght
         {
@@ -27,15 +33,12 @@ namespace PrimaryCollections
         public void Enqueue(object item){
             var newNode = new Node(item);
 
-            if(Last == null){
-                Last = newNode;
+            if(Last == null)
                 First = newNode;
-                return;
-            }
-            else{
+            else
                 Last.Next = newNode;
-                Last = newNode;                                   
-            }                       
+
+            Last = newNode;       
         }
 
         public object Dequeue(){

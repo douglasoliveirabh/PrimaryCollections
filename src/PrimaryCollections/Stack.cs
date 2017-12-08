@@ -2,7 +2,7 @@
 
 namespace PrimaryCollections
 {
-    public class MyStack
+    public class Stack
     {
         private Node Top;
 
@@ -23,7 +23,7 @@ namespace PrimaryCollections
             }            
         }
         
-        public MyStack(){
+        public Stack(){
             this.Top = null;
         }
 
