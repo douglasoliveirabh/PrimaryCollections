@@ -3,55 +3,73 @@ using System;
 namespace PrimaryCollections
 {
     public class Queue
-    {        
-        private Node First;
-        private Node Last;
+    {
+        private Node _first;
+        private Node _last;
 
-        public Queue()
+        public int Lenght { get; private set; }
+
+        public void Enqueue(object item, int weight)
         {
-            this.First = null;
-            this.Last = null;
-        }
+            var newNode = new Node(item, weight);
 
-        public int Lenght
-        {
-            get { 
-                var lenght = 0;
-
-                if(First != null){
-                    var actualNode = First;
-                    do{                    
-                        lenght ++;
-                        actualNode = actualNode.Next;
-                    }while(actualNode != null);
+            if (_last == null)
+            {
+                _last = newNode;
+                _first = _last;
+            }
+            else if (_last.Weight >= newNode.Weight)
+            {
+                _last.Next = newNode;
+                _last = _last.Next;
+            }
+            else
+            {
+                var aux = _first;
+                while (aux.Weight > newNode.Weight)
+                {
+                    aux = aux.Next;
                 }
-                
-                return lenght;
-            }            
+                var auxProx = aux.Next;
+
+                aux.Next = newNode;
+                newNode = auxProx;
+            }
+
+            Lenght += 1;
+
         }
 
-        public void Enqueue(object item){
+        public void Enqueue(object item)
+        {
             var newNode = new Node(item);
 
-            if(Last == null)
-                First = newNode;
+            if (_last == null)
+            {
+                _last = newNode;
+                _first = _last;
+            }
             else
-                Last.Next = newNode;
+            {
+                _last.Next = newNode;
+                _last = _last.Next;
+            }
 
-            Last = newNode;       
+            Lenght += 1;
         }
 
-        public object Dequeue(){
-            var returnObj = First;
+        public object Dequeue()
+        {
+            var returnObj = _first;
 
-            if(returnObj == null)
-                return null;
-            else {                
-                First = First.Next;
+            if (returnObj != null)
+            {
+                _first = _first.Next;
                 returnObj.Next = null;
+                Lenght -= 1;
             }
-                    
-            return returnObj.Data;
+
+            return returnObj == null ? returnObj : returnObj.Data;
         }
 
     }

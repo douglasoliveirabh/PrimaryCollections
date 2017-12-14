@@ -4,53 +4,41 @@ namespace PrimaryCollections
 {
     public class Stack
     {
-        private Node Top;
+        private Node _top;
 
-        public int Lenght
+        public int Lenght { get; private set; }
+
+
+        public Stack()
         {
-            get { 
-                var lenght = 0;
-
-                if(Top != null){
-                    var actualNode = Top;
-                    do{                    
-                        lenght ++;
-                        actualNode = actualNode.Next;
-                    }while(actualNode != null);
-                }
-                
-                return lenght;
-            }            
-        }
-        
-        public Stack(){
-            this.Top = null;
+            this._top = null;
         }
 
-        public void Push(object item){            
+        public void Push(object item)
+        {
             var newNode = new Node(item);
 
-            if(Top == null){
-                Top = newNode;
-                return;
-            }
-            else{
-                newNode.Next = Top;
-                Top = newNode;                
-            }                                        
+            if (_top != null)
+                newNode.Next = _top;
+
+            _top = newNode;
+            Lenght += 1;
         }
 
-        public object Pop(){            
-            var returnObj = Top;
+        public object Pop()
+        {
+            var returnObj = _top;
 
-            if(returnObj == null)
-                return null;
-            else if(returnObj.Next != null){                
-                Top = returnObj.Next;
+            if (returnObj != null)
+            {
+                Lenght -= 1;
+
+                if (returnObj.Next != null)
+                    _top = returnObj.Next;
             }
-                    
-            return returnObj.Data;            
-        }        
+
+            return returnObj == null ? returnObj : returnObj.Data;
+        }
 
     }
 }
