@@ -23,21 +23,22 @@ namespace PrimaryCollections
                 _last.Next = newNode;
                 _last = _last.Next;
             }
+            else if(_first.Weight <= newNode.Weight){
+
+                newNode.Next = _first;
+                _first = newNode;                                
+            }
             else
             {
                 var aux = _first;
-                while (aux.Weight > newNode.Weight)
-                {
-                    aux = aux.Next;
-                }
-                var auxProx = aux.Next;
+                while (aux.Next != null && aux.Next.Weight >= newNode.Weight)                                
+                    aux = aux.Next;                
 
-                aux.Next = newNode;
-                newNode = auxProx;
+                newNode.Next = aux.Next;
+                aux.Next = newNode;                            
             }
 
             Lenght += 1;
-
         }
 
         public void Enqueue(object item)

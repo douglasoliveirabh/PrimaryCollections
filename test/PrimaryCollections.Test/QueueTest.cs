@@ -62,15 +62,18 @@ namespace PrimaryCollections.Test
             myTestQueue.Enqueue(person1, 45);
             myTestQueue.Enqueue(person2, 30);
             myTestQueue.Enqueue(person3, 50);
+            myTestQueue.Enqueue(person3, 25);
 
 
             dynamic dequeuedObj1 = myTestQueue.Dequeue();
             dynamic dequeuedObj2 = myTestQueue.Dequeue();
             dynamic dequeuedObj3 = myTestQueue.Dequeue();
+            dynamic dequeuedObj4 = myTestQueue.Dequeue();
 
             Assert.True(person3.Name == dequeuedObj1.Name);
             Assert.True(person1.Name == dequeuedObj2.Name);
             Assert.True(person2.Name == dequeuedObj3.Name);
+            Assert.True(person3.Name == dequeuedObj4.Name);
 
         }
 
