@@ -31,7 +31,7 @@ namespace PrimaryCollections
             else
             {
                 var aux = _first;
-                while (aux.Next != null && aux.Next.Weight >= newNode.Weight)                                
+                while (aux.Next.Weight >= newNode.Weight)                                
                     aux = aux.Next;                
 
                 newNode.Next = aux.Next;
@@ -43,20 +43,7 @@ namespace PrimaryCollections
 
         public void Enqueue(object item)
         {
-            var newNode = new Node(item);
-
-            if (_last == null)
-            {
-                _last = newNode;
-                _first = _last;
-            }
-            else
-            {
-                _last.Next = newNode;
-                _last = _last.Next;
-            }
-
-            Lenght += 1;
+            this.Enqueue(item, 0);
         }
 
         public object Dequeue()
@@ -70,7 +57,7 @@ namespace PrimaryCollections
                 Lenght -= 1;
             }
 
-            return returnObj == null ? returnObj : returnObj.Data;
+            return returnObj != null ? returnObj.Data : null;
         }
 
     }
